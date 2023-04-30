@@ -290,25 +290,25 @@ background-color: white;
 display: flex;
 align-items: center;
 border: transparent black 1px;
-width: 70%;
+width: 500px;
 height: 750px;
 }
 
 .currImg {
 margin: auto;
-width: 100%;
+width: 500px;
 height: auto;
 }
 
 .imgThumbs {
-width: 15%;
-height: 700px;
+width: 200px;
+height: 760px;
 overflow: scroll;
 margin: 20px;
 }
 
 .indThumnails {
-width: 80%;
+width: 150px;
 height: auto;
 aspect-ratio: 1/1;
 margin-top: 30px;
