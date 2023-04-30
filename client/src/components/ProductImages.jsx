@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Zoom from './Zoom.jsx';
 
 
 const ProductImages = ({images, image,  imageChange}) => {
+    const [showZoom, setShowZoom] = useState('none');
 
     const thumbnails = () => {
         return images.map((img) => {
@@ -11,12 +13,26 @@ const ProductImages = ({images, image,  imageChange}) => {
         })
     }
 
+    const zoomImage = (e) => {
+        if( showZoom === 'none') {
+            setShowZoom('block');
+        } else if ( showZoom === 'block' ) {
+            setShowZoom('none');
+        }
+
+    }
+    
+
     return (
         <div className='styleImages'>
             <div className="imgThumbs">{thumbnails()}</div>
             <div className='image-box'>
-            <img onClick={imageChange} className='currImg' src={image.url}></img>
+                <button className='prev-image' onClick={imageChange}>Back</button>
+                <img style={{ transform: `scale(${showZoom})` }} onClick={zoomImage} className='currImg' src={image.url}></img>
+                <button className='next-image' onClick={imageChange}>Next</button>
             </div>
+
+            <Zoom showZoom={showZoom} image={image} zoomImage={zoomImage} style={{display: showZoom}} />
 
         </div>
 

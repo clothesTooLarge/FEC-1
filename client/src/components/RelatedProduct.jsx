@@ -87,13 +87,13 @@ const RelatedProduct = (props) => {
 
         <div className='preview-image' onClick={() => { props.setProductID(relatedProduct.id); }}><img src={productImages[0].thumbnail_url} alt={relatedProduct.description}></img></div>
         <div className='preview-text'>
-          <div className='product-category' >Category: {relatedProduct.category}</div>
-          <div className='product-name' >Name: {relatedProduct.name}</div>
-          <div className='product-price' >Price: {
+          <div className='product-category flexrow' >Category: {relatedProduct.category}</div>
+          <div className='product-name flexrow' >Name: {relatedProduct.name}</div>
+          <div className='product-price flexrow' >Price: {
             salePrice ? <div><s>relatedProduct.default_price</s><p style="color:red;">salePrice</p></div> : relatedProduct.default_price
             }
           </div>
-          <div className='product-rating' data-testid='product-rating' >Rating:
+          <div className='product-rating flexrow' data-testid='product-rating' >Rating:
             <div className='averageStars'>
               <div>
                 {'★'.repeat(Math.floor(stars))}

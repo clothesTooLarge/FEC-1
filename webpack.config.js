@@ -5,6 +5,7 @@ var DIST_DIR = path.join(__dirname, "/client/dist");
 const dotenv = require('dotenv').config();
 var path = require("path");
 
+
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
@@ -20,6 +21,7 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-    ],
+    ]
   },
+
 };

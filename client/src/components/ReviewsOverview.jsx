@@ -54,10 +54,10 @@ const ReviewsOver = ({data, total, average, filterFunc}) => {
                 onClick={() => {filterFunc(rating)}}>
                 {rating + ' stars'}
               </button>
-              <div style={{flex: '1 1 auto', backgroundColor: 'green', height: '15px', width: `${percentHelper(data.ratings[rating], total)}%`}}>
+              <div style={{flex: '1 1 auto', backgroundColor: 'rgb(87, 245, 78)', height: '15px', width: `${percentHelper(data.ratings[rating], total)}%`}}>
 
               </div>
-              <div style={{flex: '1 1 auto', backgroundColor: 'grey', height: '15px', width: `${percentHelper(data.ratings[rating], total, 1)}%`}}>
+              <div style={{flex: '1 1 auto', backgroundColor: 'darkgrey', height: '15px', width: `${percentHelper(data.ratings[rating], total, 1)}%`}}>
 
               </div>
 

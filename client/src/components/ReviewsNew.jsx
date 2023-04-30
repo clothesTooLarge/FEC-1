@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
-import path from 'path';
+
 
 import buildPath from '../lib/getThumbnailPath.js';
 

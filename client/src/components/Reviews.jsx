@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import ReviewsList from './ReviewsList.jsx'
 import ReviewsOverview from './ReviewsOverview.jsx'
 import ReviewsNew from './ReviewsNew.jsx'
@@ -8,7 +8,7 @@ import calcTotal from '../lib/totalCalc.jsx';
 import calcRel from '../lib/relevanceCalc.jsx';
 import {differenceInSeconds} from 'date-fns';
 
-const Reviews = (props) => {
+const Reviews = (props, ref) => {
 
   const [reviews, setReviews] = useState([]);
   const [count, setCount] = useState(2);
@@ -168,7 +168,7 @@ const Reviews = (props) => {
 
 
   return (
-    <div className="reviews" onClick={(event) => {
+    <div ref={ref} className="reviews" onClick={(event) => {
       props.clickTrack('re', event);
     }}>
       <aside className="reviewsOver">
@@ -215,4 +215,4 @@ const Reviews = (props) => {
   )
 }
 
-export default Reviews;
+export default forwardRef(Reviews);

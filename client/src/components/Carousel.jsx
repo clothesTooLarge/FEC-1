@@ -50,7 +50,7 @@ const Carousel = (props) => {
           </div>
         )
       })} */}
-      {showRight ?  <button className='carousel-right' onClick={nextItem} >right</button> : null}
+      {/* {showRight ?  <button className='carousel-right' onClick={nextItem} >right</button> : null} */}
     </div>
   )
 }

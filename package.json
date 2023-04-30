@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --coverage --watchAll --collectCoverageFrom='src/components/**/*.{js,jsx}'",
+    "test": "jest --detectOpenHandles --coverage",
     "server-dev": "npx nodemon server/index.js",
     "client-dev": "webpack --mode development --watch"
   },
@@ -15,6 +15,7 @@
     "axios": "^0.21.4",
     "babel-loader": "^8.2.1",
     "cloudinary": "^1.35.0",
+    "compression": "^1.7.4",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "express": "^4.15.0",
@@ -26,6 +27,7 @@
     "react": "^16.8.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^16.8.0",
+    "sharp": "^0.32.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   },

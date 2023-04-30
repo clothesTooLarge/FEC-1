@@ -11,9 +11,9 @@ color: white;
 }
 
 .headingRect {
-width: 6000px;
+width: 1600px;
 height: 100px;
-background: linear-gradient(to bottom, rgb(20, 20, 32), rgb(50, 34, 34), rgb(0, 0, 0));
+background: linear-gradient(to bottom, rgb(20, 20, 32), rgb(45, 82, 37), rgb(0, 0, 0));
 color: rgb(255, 255, 255);
 font-size: 70px;
 }
@@ -63,7 +63,8 @@ font-size: xx-small;
 flex: '0 0 auto';
 width: 25%;
 border: none;
-background-color: white;
+background-color: transparent;
+color: white;
 font-size: xx-small;
 }
 
@@ -108,7 +109,7 @@ justify-content: flex-end;
 
 .descriptorBox {
 background-color: rgb(232, 231, 231);
-height: 5px;
+height: 8px;
 width: 63px;
 justify-content: space-between;
 }
@@ -122,7 +123,7 @@ flex-direction: column;
 }
 .descriptorBox1 {
 background-color: rgb(232, 231, 231);
-height: 5px;
+height: 8px;
 width: 47px;
 }
 
@@ -130,9 +131,10 @@ width: 47px;
 position: absolute;
 width: 0;
 height: 0;
-border-left: 3.5px solid transparent;
-border-right: 3.5px solid transparent;
-border-top: 7px solid black;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 10px solid rgb(87, 245, 78);
+
 }
 
 .reviewTile {
@@ -149,17 +151,18 @@ top: 0;
 left: 0;
 width:100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.6);
+background: rgba(255, 255, 255, 0.6);
 }
 
 .modal-main {
 position:fixed;
-background: white;
+background: rgb(14, 13, 13);
 width: 80%;
 height: auto;
 top:50%;
 left:50%;
 transform: translate(-50%,-50%);
+
 }
 
 .display-block {
@@ -229,6 +232,8 @@ font-size: 11px;
 text-decoration: underline;
 font-weight: bold;
 border: none;
+background-color: black;
+color: white;
 }
 
 .totalDescript {
@@ -268,18 +273,19 @@ border: transparent greenyellow 5px;
 }
 .styleImages {
 display: flex;
-width: 50%;
+width: 70%;
 margin: 30px;
 border: 3px transparent pink;
 }
 .productDetails{
-width: 50%;
+width: 30%;
 margin: 30px;
 border: transparent green 2px;
 }
 
 .image-box {
-margin-left: 50px;
+margin-left: 30px;
+margin-right: 30px;
 background-color: white;
 display: flex;
 align-items: center;
@@ -295,16 +301,18 @@ height: auto;
 }
 
 .imgThumbs {
-width: 10%;
+width: 15%;
+height: 700px;
+overflow: scroll;
 margin: 20px;
 }
 
 .indThumnails {
-width: 100%;
+width: 80%;
 height: auto;
 aspect-ratio: 1/1;
 margin-top: 30px;
-margin-left: 5px;
+margin-left: 20px;
 opacity: 90%;
 border: 1px black solid;
 border-radius: 10%;
@@ -479,7 +487,7 @@ padding-right: 10px;
 .QA-List {
   overflow: scroll;
   min-height: 100px;
-  max-height: 900px;
+  max-height: 500px;
 }
 
 ::-webkit-scrollbar {
@@ -606,6 +614,7 @@ body .QA-Modal-Container .QA-Modal-Thumbnail {
 min-height: 200px;
 min-width: 100px;
 max-height: 200px;
+font-size: x-small;
 max-width: 100px;
 height: auto;
 width: auto;
@@ -622,15 +631,18 @@ height: 700px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+position: relative;
 }
 
 
 .related-products {
 height: auto;
-width: 1200px;
+width: 1600px;
 display: flex;
 justify-content: space-between;
 flex-direction: column;
+overflow-y: scroll;
+
 }
 
 .image-box {
@@ -676,5 +688,42 @@ background-color: transparent;
 }
 
 .Add-to-Cart {
+  height: 75%;
+}
+
+.next-image, .prev-image{
+  height: auto;
+  width: 100px;
+  aspect-ratio: 5/40;
+  margin: 5px;
+  vertical-align: auto;
+}
+
+.zoom-box {
+    bottom: 0;
+    right: 2%;
+    z-index: 100000;
+    position: fixed;
+    height: 100vw;
+    width:  100vw;
+    background-color: rgba(0,0,0,.5);
+}
+
+.img-zoom {
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  max-height: 125%;
+  width: auto;
+  top: -2%;
+  left: 30%;
+  z-index: 1000000;
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 40px;
+  /* transform: translate(-50%, -50%); */
+  background-color: white ;
+}
+
+.Favorite {
   height: 75%;
 }

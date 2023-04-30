@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import reactDOM from 'react-dom';
 import axios from 'axios';
 
@@ -14,6 +14,13 @@ const App = () => {
   const [average, setAverage] = useState(0);
   const [productID, setProductID] = useState(71697)
   const [outfits, setOutfits] = useState([]);
+  const ref = useRef(null);
+
+  const seeReviewsClick = (e) => {
+    console.log(ref)
+   ref.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+}
+
 
   useEffect(() => {
     getHandler('/product', productID, (response) => {setProduct(response.data)});
@@ -39,11 +46,11 @@ const App = () => {
       </div>
       {/* {JSON.stringify(product)} */}
 
-      <ProductOverview clickTrack={clickHandle} product={product} productID={productID}/>
+      <ProductOverview clickTrack={clickHandle} product={product} productID={productID} seeReviewsClick={seeReviewsClick} outfits={outfits} setOutfits={setOutfits}/>
       <RelatedProducts clickTrack={clickHandle} setProductID={setProductID} setOutfits={setOutfits} outfits={outfits} product={product} id={product.id ? product.id : 0} />
 
       <QA clickTrack={clickHandle} id={product.id ? product.id : 0} product_name={product.name}/>
-      <Reviews clickTrack={clickHandle} id={product.id ? product.id : 0} name={product.name} setAv={setAverage}/>
+      <Reviews ref={ref} clickTrack={clickHandle} id={product.id ? product.id : 0} name={product.name} setAv={setAverage}/>
     </div>
   );
 }

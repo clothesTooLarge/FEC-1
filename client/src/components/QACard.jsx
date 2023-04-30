@@ -66,6 +66,7 @@ const QACard = ({ id, question, helpfulness, isReported, answers, isHelpful, tog
         && <div className='QA-more' onClick={toggleMoreAnswers}><u>See more answers</u></div>}
         {moreAnswers && <div className='QA-more' onClick={toggleMoreAnswers}><u>Collapse answers</u></div>}
       </div>
+      <>_______________________________________________________________________________________________________________________________________________________________________________</>
     </div>
   );
 }

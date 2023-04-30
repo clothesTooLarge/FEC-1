@@ -25,6 +25,10 @@ const Answer = (props) => {
   return (
     <div className='Answer' key={answer.id}>
       <p>{answer.body}</p>
+      { answer.photos && answer.photos.map(image => {
+        console.log(image);
+        //  <img src=`${image}` alt='thumbnail' key={image}/>
+      })}
       <span className='Answer-NameDate'>
         By&ensp;
         {

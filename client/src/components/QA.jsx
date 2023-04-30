@@ -73,7 +73,7 @@ const QA = ({ id, product_name, clickTrack }) => {
       'photos': photos,
       'question_id': question.question_id
     }
-
+    console.log(photos);
     if (answerText === '' || nickname === '' || email === '') {
       alert(`You must enter the following: ${missing(body)}`);
       return;

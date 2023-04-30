@@ -3,8 +3,12 @@ import axios from 'axios';
 import ProductImages from './ProductImages.jsx';
 import Styles from './ProductStyles.jsx';
 import Cart from './Cart.jsx';
+import ShadedStar from './ShadedStar.jsx'
+import calcTotal from '../lib/totalCalc.jsx';
+import calculateAverage from '../lib/averageCalc.jsx';
+import Outfits from './Outfits.jsx';
 
-const ProductOverview = ({ product, productID, clickTrack }) => {
+const ProductOverview = ({ product, productID, clickTrack, seeReviewsClick, outfits, setOutfits }) => {
     const [styles, setStyles] = useState([]);
     const [style, setStyle] = useState({});
     const [images, setImages] = useState([]);
@@ -13,6 +17,17 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
     const [currSku, setCurrSku] = useState({});
     const [size, setSize] = useState('');
     const [stock, setStock] = useState(0);
+    //review stuff 
+    const [stars, setStars] = useState(0);
+    const [meta, setMeta] = useState({});
+    const [total, setTotal] = useState(0);
+    const [avg, setAvg] = useState(0);
+
+
+
+
+
+
     const getStyles = async () => {
         let options = {
             'url': '/styles',
@@ -22,7 +37,6 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
 
         await axios.request(options)
             .then((result) => {
-                console.log(result);
                 setStyles(result.data);
                 setStyle(result.data[0]);
                 setImages(result.data[0].photos)
@@ -71,34 +85,37 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
                 setSkus(indStyle.skus);
             }
         })
-        console.log(skus);
 
-    }
+    };
 
     //change the current image displayed when an image thumbnail is clicked
     const imageChange = (e) => {
         e.preventDefault();
         var imageIndex = images.indexOf(image);
-        if (e.target.className === 'currImg') {
+
+        if(e.target.className === 'next-image') {
             if (imageIndex === images.length - 1) {
                 setImage(images[0]);
             } else {
                 setImage(images[imageIndex + 1]);
             }
-
-        } else {
-            images.forEach(img => {
-                if (img.thumbnail_url === e.target.src) {
-                    setImage(img);
-                }
-            })
-        }
-
-
+        } else if (e.target.className === 'prev-image') {
+            if (imageIndex === 0) {
+                setImage(images.length - 1);
+            } else {
+                setImage(images[imageIndex - 1]);
+            }
+        }  else {
+                images.forEach(img => {
+                    if (img.thumbnail_url === e.target.src) {
+                        setImage(img);
+                    }
+                })
+            }
     }
 
     const cartSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         let options = {
             'url': '/cart',
@@ -115,6 +132,15 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
             });
     }
 
+    const getMeta = () => {
+        axios.get(`/reviewsMeta/?product_id=${productID}`).then((result) => {
+          setMeta(result.data);
+          setTotal(calcTotal(result));
+          setAvg(calculateAverage(calcTotal(result), result.data));
+          setStars(((Math.round(calculateAverage(calcTotal(result), result.data) * 4) / 4).toFixed(2)));
+        });
+      }
+    
 
 
 
@@ -122,6 +148,7 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
         if (productID !== undefined) {
             getStyles()
         }
+        getMeta();
     }, [productID, product])
 
 
@@ -130,9 +157,25 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
             clickTrack('po', event);
         }}>
 
-                <ProductImages images={images} image={image} imageChange={imageChange} />
+
+            <ProductImages images={images} image={image} imageChange={imageChange} />
             <div className='productDetails'>
                 <h2>{product.name}</h2>
+
+                <div onClick={seeReviewsClick} className='averageStars'>
+                    <div className='OvAvg'>
+                        {Math.round(avg * 100) / 100}
+                    </div>
+                    <div>
+                        {'★'.repeat(Math.floor(stars))}
+                    </div>
+                    <ShadedStar shade={stars % 1} />
+                    <div>
+                        {'☆'.repeat(5 - Math.floor(stars))}
+                        See all {total} Reviews
+                    </div>
+            </div>
+
                 <p>{product.description}</p>
                 {onSale()}
                 <p>category:{product.category}</p>
@@ -140,7 +183,7 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
                 <div className='styles'>
                     <Styles style={style} styles={styles} styleClick={styleClick} />
                 </div>
-                <Cart cartSubmit={cartSubmit} skus={skus} currSku={currSku} size={size} stock={stock} setSize={setSize} setCurrSku= {setCurrSku}/>
+                <Cart product={product} outfits={outfits} setOutfits={setOutfits} cartSubmit={cartSubmit} skus={skus} currSku={currSku} size={size} stock={stock} setSize={setSize} setCurrSku={setCurrSku} setStock={setStock} />
             </div>
         </div>
     )
@@ -148,5 +191,4 @@ const ProductOverview = ({ product, productID, clickTrack }) => {
 }
 export default ProductOverview;
 
-//help me please
-//need to get this to a state where I can push and merge so we can have all of our stuff in working order
+
